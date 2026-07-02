@@ -18,6 +18,7 @@ import {
   FaHouse,
 } from 'react-icons/fa6'
 import { useAuth } from '@/contexts/AuthContext'
+import NotificationBell from '@/components/admin/NotificationBell'
 
 const NAV_LINKS = [
   { to: '/admin', label: 'Dashboard', icon: FaGauge, end: true },
@@ -108,7 +109,8 @@ export default function AdminLayout() {
             <FaBars size={18} />
           </button>
 
-          <div className="ml-auto flex items-center gap-4">
+          <div className="ml-auto flex items-center gap-2 sm:gap-4">
+            <NotificationBell />
             <NavLink
               to="/"
               className="flex items-center gap-2 text-sm text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
