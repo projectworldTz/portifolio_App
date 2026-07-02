@@ -28,9 +28,9 @@ function appendValue(formData: FormData, key: string, value: FormValue): void {
   formData.append(key, String(value))
 }
 
-export function buildFormData(data: Record<string, FormValue>, method?: 'PUT' | 'PATCH'): FormData {
+export function buildFormData<T extends object>(data: T, method?: 'PUT' | 'PATCH'): FormData {
   const formData = new FormData()
-  Object.entries(data).forEach(([key, value]) => appendValue(formData, key, value))
+  Object.entries(data).forEach(([key, value]) => appendValue(formData, key, value as FormValue))
   if (method) {
     formData.append('_method', method)
   }

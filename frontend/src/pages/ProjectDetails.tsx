@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { FaArrowUpRightFromSquare, FaGithub } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import Button from '@/components/ui/Button'
 import Skeleton from '@/components/ui/Skeleton'
@@ -36,9 +36,7 @@ export default function ProjectDetails() {
 
   return (
     <>
-      <Helmet>
-        <title>{project.title} | Portfolio</title>
-      </Helmet>
+      <Seo title={project.title} description={project.short_description} image={project.thumbnail} />
 
       <section className="py-12">
         <Container>

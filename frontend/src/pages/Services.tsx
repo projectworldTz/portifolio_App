@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { FaLayerGroup } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
 import Button from '@/components/ui/Button'
@@ -13,9 +13,7 @@ export default function Services() {
 
   return (
     <>
-      <Helmet>
-        <title>Services | Portfolio</title>
-      </Helmet>
+      <Seo title="Services" description="From a single feature to a full product build, here's what I offer." />
 
       <section className="py-16">
         <Container>

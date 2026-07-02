@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaArrowUpRightFromSquare, FaBook } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import Button from '@/components/ui/Button'
 import Skeleton from '@/components/ui/Skeleton'
@@ -33,9 +33,7 @@ export default function ProductDetails() {
 
   return (
     <>
-      <Helmet>
-        <title>{product.name} | Portfolio</title>
-      </Helmet>
+      <Seo title={product.name} description={product.short_description} image={product.thumbnail} />
 
       <section className="py-12">
         <Container>

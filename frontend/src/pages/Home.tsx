@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import Seo from '@/components/common/Seo'
 import Hero from '@/components/home/Hero'
 import AboutPreview from '@/components/home/AboutPreview'
 import Skills from '@/components/home/Skills'
@@ -11,9 +11,7 @@ import ContactCta from '@/components/home/ContactCta'
 export default function Home() {
   return (
     <>
-      <Helmet>
-        <title>Home | Portfolio</title>
-      </Helmet>
+      <Seo title="Home" />
       <Hero />
       <AboutPreview />
       <Skills />

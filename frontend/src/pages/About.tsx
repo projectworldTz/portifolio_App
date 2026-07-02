@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { FaBriefcase, FaGraduationCap, FaCertificate } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
 import Skills from '@/components/home/Skills'
@@ -45,9 +45,10 @@ export default function About() {
 
   return (
     <>
-      <Helmet>
-        <title>About | Portfolio</title>
-      </Helmet>
+      <Seo
+        title="About"
+        description={settings?.site_description ?? "Learn more about my background, experience, and skills."}
+      />
 
       <section className="py-16">
         <Container>

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { FaEnvelope, FaLocationDot, FaMapLocationDot } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
 import Button from '@/components/ui/Button'
@@ -51,9 +51,7 @@ export default function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact | Portfolio</title>
-      </Helmet>
+      <Seo title="Contact" description="Have a project or question? Get in touch." />
 
       <section className="py-16">
         <Container>

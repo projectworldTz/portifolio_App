@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
+import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
 import Skeleton from '@/components/ui/Skeleton'
@@ -32,9 +32,7 @@ export default function Products() {
 
   return (
     <>
-      <Helmet>
-        <title>Products | Portfolio</title>
-      </Helmet>
+      <Seo title="Products" description="Ready-to-use software products available for purchase." />
 
       <section className="py-16">
         <Container>
