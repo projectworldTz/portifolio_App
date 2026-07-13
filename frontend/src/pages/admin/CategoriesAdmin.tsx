@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField, TextareaField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   listCategories,
   createCategory,
@@ -62,8 +63,8 @@ export default function CategoriesAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -77,8 +78,8 @@ export default function CategoriesAdmin() {
       showToast('Category deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete category.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete category.'), 'error')
     } finally {
       setIsDeleting(false)
     }

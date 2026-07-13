@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField, CheckboxField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   listSocialLinks,
   createSocialLink,
@@ -62,8 +63,8 @@ export default function SocialLinksAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -77,8 +78,8 @@ export default function SocialLinksAdmin() {
       showToast('Social link deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete social link.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete social link.'), 'error')
     } finally {
       setIsDeleting(false)
     }

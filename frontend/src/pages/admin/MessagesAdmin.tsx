@@ -5,6 +5,7 @@ import AdminTable, { type AdminColumn } from '@/components/admin/AdminTable'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import Modal from '@/components/admin/Modal'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { listMessages, markMessageAsRead, deleteMessage } from '@/services/messages'
 import type { ContactMessage } from '@/types'
 
@@ -45,8 +46,8 @@ export default function MessagesAdmin() {
       showToast('Message deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete message.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete message.'), 'error')
     } finally {
       setIsDeleting(false)
     }

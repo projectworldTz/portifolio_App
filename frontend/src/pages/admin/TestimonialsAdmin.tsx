@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField, TextareaField, CheckboxField, FileField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   listTestimonials,
   createTestimonial,
@@ -78,8 +79,8 @@ export default function TestimonialsAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -93,8 +94,8 @@ export default function TestimonialsAdmin() {
       showToast('Testimonial deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete testimonial.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete testimonial.'), 'error')
     } finally {
       setIsDeleting(false)
     }

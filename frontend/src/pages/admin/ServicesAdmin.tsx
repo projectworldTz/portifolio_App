@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField, TextareaField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { listServices, createService, updateService, deleteService } from '@/services/serviceCatalog'
 import type { Service } from '@/types'
 
@@ -77,8 +78,8 @@ export default function ServicesAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -92,8 +93,8 @@ export default function ServicesAdmin() {
       showToast('Service deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete service.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete service.'), 'error')
     } finally {
       setIsDeleting(false)
     }

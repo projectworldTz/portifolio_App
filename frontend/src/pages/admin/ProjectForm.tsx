@@ -117,8 +117,8 @@ export default function ProjectForm() {
       await deleteProjectImage(slug, imageId)
       setExistingImages((prev) => prev.filter((img) => img.id !== imageId))
       showToast('Image deleted.')
-    } catch {
-      showToast('Could not delete image.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete image.'), 'error')
     }
   }
 

@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   listTechnologies,
   createTechnology,
@@ -62,8 +63,8 @@ export default function TechnologiesAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -77,8 +78,8 @@ export default function TechnologiesAdmin() {
       showToast('Technology deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete technology.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete technology.'), 'error')
     } finally {
       setIsDeleting(false)
     }

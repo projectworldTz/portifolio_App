@@ -5,6 +5,7 @@ import AdminPageHeader from '@/components/admin/AdminPageHeader'
 import AdminTable, { type AdminColumn } from '@/components/admin/AdminTable'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { listProjects, deleteProject } from '@/services/projects'
 import type { Project } from '@/types'
 
@@ -33,8 +34,8 @@ export default function ProjectsAdmin() {
       showToast('Project deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete project.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete project.'), 'error')
     } finally {
       setIsDeleting(false)
     }

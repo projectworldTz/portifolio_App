@@ -5,6 +5,7 @@ import AdminPageHeader from '@/components/admin/AdminPageHeader'
 import AdminTable, { type AdminColumn } from '@/components/admin/AdminTable'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { listProducts, deleteProduct } from '@/services/products'
 import type { Product } from '@/types'
 
@@ -33,8 +34,8 @@ export default function ProductsAdmin() {
       showToast('Product deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete product.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete product.'), 'error')
     } finally {
       setIsDeleting(false)
     }

@@ -6,6 +6,7 @@ import Modal from '@/components/admin/Modal'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { TextField, TextareaField, SelectField, CheckboxField, FileField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { useFetch } from '@/hooks/useFetch'
 import { listCategories } from '@/services/categories'
 import { listBlogs, createBlog, updateBlog, deleteBlog, type BlogPayload } from '@/services/blogs'
@@ -94,8 +95,8 @@ export default function BlogsAdmin() {
       }
       setModalOpen(false)
       reload()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }
@@ -109,8 +110,8 @@ export default function BlogsAdmin() {
       showToast('Blog post deleted.')
       setDeleteTarget(null)
       reload()
-    } catch {
-      showToast('Could not delete blog post.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete blog post.'), 'error')
     } finally {
       setIsDeleting(false)
     }

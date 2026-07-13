@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { TextField, TextareaField, FileField } from '@/components/admin/fields'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import { useSiteData } from '@/contexts/SiteDataContext'
 import { getSettings, updateSettings, type SettingPayload } from '@/services/settings'
 
@@ -57,8 +58,8 @@ export default function SettingsAdmin() {
       await updateSettings(form)
       showToast('Settings saved.')
       refresh()
-    } catch {
-      showToast('Something went wrong.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong.'), 'error')
     } finally {
       setIsSaving(false)
     }

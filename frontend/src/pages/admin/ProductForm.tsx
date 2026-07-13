@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { TextField, TextareaField, SelectField, CheckboxField, FileField } from '@/components/admin/fields'
 import GalleryUploader, { type ExistingImage, type NewImage } from '@/components/admin/GalleryUploader'
 import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   getProductBySlug,
   createProduct,
@@ -86,8 +87,8 @@ export default function ProductForm() {
       await deleteProductImage(slug, imageId)
       setExistingImages((prev) => prev.filter((img) => img.id !== imageId))
       showToast('Image deleted.')
-    } catch {
-      showToast('Could not delete image.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Could not delete image.'), 'error')
     }
   }
 
@@ -120,8 +121,8 @@ export default function ProductForm() {
         showToast('Product created.')
       }
       navigate('/admin/products')
-    } catch {
-      showToast('Something went wrong. Check required fields.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong. Check required fields.'), 'error')
     } finally {
       setIsSaving(false)
     }
