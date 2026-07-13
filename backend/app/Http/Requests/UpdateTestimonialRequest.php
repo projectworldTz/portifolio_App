@@ -15,7 +15,7 @@ class UpdateTestimonialRequest extends FormRequest
     {
         return [
             'client_name' => ['sometimes', 'required', 'string', 'max:255'],
-            'client_photo' => ['nullable', 'image', 'max:5120'],
+            'client_photo' => ['nullable', 'image', 'max:10240'],
             'company' => ['nullable', 'string', 'max:255'],
             'review' => ['sometimes', 'required', 'string'],
             'rating' => ['sometimes', 'required', 'integer', 'min:1', 'max:5'],

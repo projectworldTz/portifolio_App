@@ -14,7 +14,7 @@ class StoreUploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => ['required', 'image', 'max:5120'],
+            'file' => ['required', 'image', 'max:10240'],
             'directory' => ['nullable', 'in:projects,products,testimonials,settings,blogs'],
         ];
     }

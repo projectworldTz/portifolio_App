@@ -34,10 +34,11 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # tiny compiled-in defaults (upload_max_filesize=2M, post_max_size=8M) — well
 # under what a phone photo needs, and under that ceiling PHP silently drops
 # the whole request body, wiping $_POST along with the files. Raise both past
-# the app's own 5MB-per-image validation limit (StoreProjectRequest).
+# the app's own 10MB-per-image validation limit (StoreProjectRequest etc.),
+# with headroom for a thumbnail plus several gallery images in one request.
 RUN { \
-        echo 'upload_max_filesize=10M'; \
-        echo 'post_max_size=30M'; \
+        echo 'upload_max_filesize=12M'; \
+        echo 'post_max_size=60M'; \
         echo 'max_file_uploads=20'; \
     } > /usr/local/etc/php/conf.d/uploads.ini
 

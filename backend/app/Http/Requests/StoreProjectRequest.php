@@ -22,7 +22,7 @@ class StoreProjectRequest extends FormRequest
             'features' => ['nullable', 'array'],
             'challenges' => ['nullable', 'string'],
             'solutions' => ['nullable', 'string'],
-            'thumbnail' => ['nullable', 'image', 'max:5120'],
+            'thumbnail' => ['nullable', 'image', 'max:10240'],
             'demo_url' => ['nullable', 'url', 'max:255'],
             'repo_url' => ['nullable', 'url', 'max:255'],
             'demo_video_url' => ['nullable', 'url', 'max:255'],
@@ -34,7 +34,7 @@ class StoreProjectRequest extends FormRequest
             'technology_ids' => ['nullable', 'array'],
             'technology_ids.*' => ['exists:technologies,id'],
             'images' => ['nullable', 'array'],
-            'images.*.file' => ['required_with:images', 'image', 'max:5120'],
+            'images.*.file' => ['required_with:images', 'image', 'max:10240'],
             'images.*.alt_text' => ['nullable', 'string', 'max:255'],
         ];
     }
