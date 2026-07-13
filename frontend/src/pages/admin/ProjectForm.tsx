@@ -7,6 +7,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { useFetch } from '@/hooks/useFetch'
 import { listCategories } from '@/services/categories'
 import { listTechnologies } from '@/services/technologies'
+import { getErrorMessage } from '@/utils/apiError'
 import {
   getProjectBySlug,
   createProject,
@@ -155,8 +156,8 @@ export default function ProjectForm() {
         showToast('Project created.')
       }
       navigate('/admin/projects')
-    } catch {
-      showToast('Something went wrong. Check required fields.', 'error')
+    } catch (err) {
+      showToast(getErrorMessage(err, 'Something went wrong. Check required fields.'), 'error')
     } finally {
       setIsSaving(false)
     }
