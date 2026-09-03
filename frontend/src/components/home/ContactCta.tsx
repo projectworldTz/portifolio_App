@@ -17,13 +17,13 @@ export default function ContactCta() {
             aria-hidden
             className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent_60%)]"
           />
-          <h2 className="relative text-3xl font-bold text-white sm:text-4xl">Have a project in mind?</h2>
+          <h2 className="relative text-3xl font-bold text-white sm:text-4xl">Let&apos;s make something useful.</h2>
           <p className="relative mx-auto mt-4 max-w-xl text-indigo-100">
-            Let's talk about how I can help you design, build, and ship it.
+            Hiring, collaborating, or starting a new project? Tell me what you&apos;re working on.
           </p>
           <div className="relative mt-8">
             <Button to="/contact" variant="secondary" className="!border-white !text-white hover:!bg-white/10">
-              Get in Touch
+              Start a conversation
             </Button>
           </div>
         </motion.div>

@@ -38,33 +38,29 @@ export default function ProjectDetails() {
     <>
       <Seo title={project.title} description={project.short_description} image={project.thumbnail} />
 
-      <section className="py-12">
+      <section className="py-12 sm:py-16">
         <Container>
+          <div className="mx-auto max-w-4xl text-center">
+            {project.category && <p className="text-sm font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-400">{project.category.name}</p>}
+            <h1 className="mt-3 text-4xl font-bold tracking-[-0.04em] text-neutral-950 dark:text-white sm:text-6xl">{project.title}</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">{project.short_description}</p>
+          </div>
+
           {project.thumbnail && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="aspect-video w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-800"
+              className="mt-12 aspect-video w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-800"
             >
-              <img src={project.thumbnail} alt={project.title} className="h-full w-full object-cover" />
+              <img src={project.thumbnail} alt={`${project.title} overview`} decoding="async" fetchPriority="high" className="h-full w-full object-contain" />
             </motion.div>
           )}
 
           <div className="mt-8 grid gap-10 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              {project.category && (
-                <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-                  {project.category.name}
-                </p>
-              )}
-              <h1 className="mt-2 text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
-                {project.title}
-              </h1>
-              <p className="mt-4 text-base text-neutral-600 dark:text-neutral-400">{project.short_description}</p>
-
               {project.technologies && project.technologies.length > 0 && (
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech.id}
@@ -76,18 +72,20 @@ export default function ProjectDetails() {
                 </div>
               )}
 
-              <div className="prose prose-neutral mt-8 max-w-none dark:prose-invert">
-                <p className="whitespace-pre-line text-neutral-700 dark:text-neutral-300">{project.description}</p>
+              <div className="mt-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-indigo-600 dark:text-indigo-400">Overview</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-neutral-950 dark:text-white">The project</h2>
+                <p className="mt-4 whitespace-pre-line text-base leading-8 text-neutral-700 dark:text-neutral-300">{project.description}</p>
               </div>
 
               {project.features && project.features.length > 0 && (
                 <div className="mt-8">
-                  <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Features</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">What I built</h2>
                   <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                     {project.features.map((feature) => (
                       <li
                         key={feature}
-                        className="rounded-lg bg-neutral-50 px-4 py-2 text-sm text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+                        className="rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300"
                       >
                         {feature}
                       </li>
@@ -100,14 +98,14 @@ export default function ProjectDetails() {
                 <div className="mt-8 grid gap-6 sm:grid-cols-2">
                   {project.challenges && (
                     <div>
-                      <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Challenges</h2>
-                      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{project.challenges}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-600 dark:text-amber-400">The challenge</p>
+                      <p className="mt-3 leading-7 text-neutral-600 dark:text-neutral-300">{project.challenges}</p>
                     </div>
                   )}
                   {project.solutions && (
                     <div>
-                      <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Solutions</h2>
-                      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{project.solutions}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600 dark:text-emerald-400">The solution</p>
+                      <p className="mt-3 leading-7 text-neutral-600 dark:text-neutral-300">{project.solutions}</p>
                     </div>
                   )}
                 </div>
@@ -115,7 +113,7 @@ export default function ProjectDetails() {
 
               {project.images.length > 0 && (
                 <div className="mt-8">
-                  <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Gallery</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">A closer look</h2>
                   <div className="mt-3 grid gap-4 sm:grid-cols-2">
                     {project.images.map((image) => (
                       <img
@@ -123,7 +121,8 @@ export default function ProjectDetails() {
                         src={image.url}
                         alt={image.alt_text ?? project.title}
                         loading="lazy"
-                        className="aspect-video w-full rounded-xl object-cover"
+                        decoding="async"
+                        className="aspect-video w-full rounded-xl border border-neutral-200 bg-neutral-50 object-contain dark:border-neutral-800 dark:bg-neutral-900"
                       />
                     ))}
                   </div>
@@ -145,7 +144,8 @@ export default function ProjectDetails() {
               )}
             </div>
 
-            <aside className="h-fit rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800">
+            <aside className="h-fit rounded-2xl border border-neutral-200 p-6 shadow-sm dark:border-neutral-800 lg:sticky lg:top-24">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-400">Project links</p>
               {project.is_purchasable && (
                 <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                   {project.price ? `$${project.price}` : 'Contact for pricing'}

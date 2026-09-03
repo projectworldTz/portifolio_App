@@ -14,12 +14,12 @@ export default function FeaturedProjects() {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-20 sm:py-28">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-          <SectionHeading eyebrow="Portfolio" title="Featured Projects" />
+          <SectionHeading eyebrow="Selected work" title="Projects built to solve real problems" description="A focused look at the thinking, engineering, and decisions behind my work." />
           <Button to="/projects" variant="secondary">
-            View All Projects
+            See all work
           </Button>
         </div>
 

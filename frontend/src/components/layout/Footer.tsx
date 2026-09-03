@@ -4,10 +4,8 @@ import { useSiteData } from '@/contexts/SiteDataContext'
 import { getSocialIcon } from '@/utils/socialIcons'
 
 const NAV_LINKS = [
-  { to: '/', label: 'Home' },
+  { to: '/projects', label: 'Work' },
   { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/products', label: 'Products' },
   { to: '/services', label: 'Services' },
   { to: '/contact', label: 'Contact' },
 ]

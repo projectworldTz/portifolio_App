@@ -5,26 +5,26 @@ import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.tsx'
 import ErrorBoundary from '@/components/common/ErrorBoundary'
-import { ThemeProvider } from '@/contexts/ThemeContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { SiteDataProvider } from '@/contexts/SiteDataContext'
 import { ToastProvider } from '@/contexts/ToastContext'
+
+document.documentElement.classList.remove('dark')
+localStorage.removeItem('theme')
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
       <HelmetProvider>
-        <ThemeProvider>
-          <AuthProvider>
-            <SiteDataProvider>
-              <ToastProvider>
-                <BrowserRouter>
-                  <App />
-                </BrowserRouter>
-              </ToastProvider>
-            </SiteDataProvider>
-          </AuthProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <SiteDataProvider>
+            <ToastProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </ToastProvider>
+          </SiteDataProvider>
+        </AuthProvider>
       </HelmetProvider>
     </ErrorBoundary>
   </StrictMode>,
