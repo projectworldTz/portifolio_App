@@ -27,10 +27,33 @@ export default function Navbar() {
   const mobileLinkClass = (args: { isActive: boolean }) => `block py-2.5 ${linkClass(args)}`
 
   return (
-    <header className="safe-top sticky top-0 z-50 border-b border-neutral-200/80 bg-white/90 shadow-[0_1px_0_rgba(0,0,0,.02)] backdrop-blur-xl">
-      <nav className="safe-left safe-right mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <NavLink to="/" className="text-lg font-bold tracking-tight text-neutral-950">
-          {settings?.site_name ?? 'Portfolio'}<span className="text-indigo-600">.</span>
+    <header className="safe-top sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 shadow-[0_8px_32px_rgba(15,23,42,.06)] backdrop-blur-xl">
+      <nav className="safe-left safe-right mx-auto flex max-w-6xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
+        <NavLink
+          to="/"
+          onClick={() => setIsOpen(false)}
+          className="group flex min-w-0 items-center gap-2.5"
+          aria-label="ProjectWorldTZ home"
+        >
+          <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-[0_8px_24px_rgba(14,165,233,.2)] transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_10px_28px_rgba(14,165,233,.3)]">
+            <img
+              src="/branding/projectworldtz-mark.webp"
+              alt=""
+              width="256"
+              height="256"
+              decoding="async"
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+          </span>
+          <span className="min-w-0 leading-none">
+            <span className="block whitespace-nowrap text-[1.05rem] font-extrabold tracking-[-0.045em] text-slate-900 sm:text-xl">
+              project<span className="text-sky-600">world</span>Tz
+            </span>
+            <span className="mt-1 hidden whitespace-nowrap text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-slate-400 lg:block">
+              Software · Systems · Success
+            </span>
+          </span>
         </NavLink>
 
         <div className="hidden items-center gap-8 md:flex">
