@@ -84,7 +84,9 @@ cd "${BACKEND_DIR}"
 
 log "Installing and building the React frontend"
 cd "${FRONTEND_DIR}"
-"${NPM_BIN}" ci --no-audit --no-fund
+# Shared-hosting environments commonly export NODE_ENV=production, which
+# makes npm omit TypeScript and Vite. They are required to build the SPA.
+"${NPM_BIN}" ci --include=dev --no-audit --no-fund
 VITE_API_URL="${VITE_API_URL:-/api}" VITE_APP_URL="${VITE_APP_URL:-}" "${NPM_BIN}" run build
 
 [[ -f "${FRONTEND_DIR}/dist/index.html" ]] || fail "The frontend build did not create frontend/dist/index.html."

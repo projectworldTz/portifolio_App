@@ -43,6 +43,10 @@ The server must provide Git, PHP 8.2+, Composer, and Node/npm. The first run
 will fail with a specific message if any requirement or `backend/.env` is
 missing. Never commit the production `.env` file.
 
+The frontend build tools are pinned to releases compatible with Truehost's
+Node.js 20.17 and the deployment explicitly installs development dependencies
+because TypeScript and Vite are needed during the build.
+
 ## Render deployment
 
 This app deploys as a **single Render Web Service**: a Docker image that builds
