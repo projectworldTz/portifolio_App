@@ -25,6 +25,8 @@ interface FormState {
   challenges: string
   solutions: string
   demo_url: string
+  demo_email: string
+  demo_password: string
   repo_url: string
   demo_video_url: string
   price: string
@@ -45,6 +47,8 @@ const EMPTY_FORM: FormState = {
   challenges: '',
   solutions: '',
   demo_url: '',
+  demo_email: '',
+  demo_password: '',
   repo_url: '',
   demo_video_url: '',
   price: '',
@@ -86,6 +90,8 @@ export default function ProjectForm() {
           challenges: project.challenges ?? '',
           solutions: project.solutions ?? '',
           demo_url: project.demo_url ?? '',
+          demo_email: project.demo_email ?? '',
+          demo_password: project.demo_password ?? '',
           repo_url: project.repo_url ?? '',
           demo_video_url: project.demo_video_url ?? '',
           price: project.price ?? '',
@@ -135,6 +141,8 @@ export default function ProjectForm() {
       challenges: form.challenges || undefined,
       solutions: form.solutions || undefined,
       demo_url: form.demo_url || undefined,
+      demo_email: form.demo_email,
+      demo_password: form.demo_password,
       repo_url: form.repo_url || undefined,
       demo_video_url: form.demo_video_url || undefined,
       price: form.price ? Number(form.price) : null,
@@ -265,6 +273,29 @@ export default function ProjectForm() {
             value={form.demo_video_url}
             onChange={(e) => setForm({ ...form, demo_video_url: e.target.value })}
           />
+        </div>
+
+        <div className="rounded-2xl border border-indigo-200 bg-indigo-50/70 p-5">
+          <p className="text-sm font-semibold text-indigo-950">Public demo access</p>
+          <p className="mt-1 text-xs leading-5 text-indigo-700">
+            Add credentials recruiters can use to test this project. Use a restricted demo account only—never a real admin or production account.
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <TextField
+              id="demo_email"
+              label="Demo email / username"
+              autoComplete="off"
+              value={form.demo_email}
+              onChange={(e) => setForm({ ...form, demo_email: e.target.value })}
+            />
+            <TextField
+              id="demo_password"
+              label="Demo password"
+              autoComplete="new-password"
+              value={form.demo_password}
+              onChange={(e) => setForm({ ...form, demo_password: e.target.value })}
+            />
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3">

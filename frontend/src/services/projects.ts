@@ -17,6 +17,8 @@ export interface ProjectPayload {
   solutions?: string
   thumbnail?: File | null
   demo_url?: string
+  demo_email?: string
+  demo_password?: string
   repo_url?: string
   demo_video_url?: string
   price?: number | null

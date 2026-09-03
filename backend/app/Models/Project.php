@@ -27,6 +27,8 @@ class Project extends Model
         'solutions',
         'thumbnail',
         'demo_url',
+        'demo_email',
+        'demo_password',
         'repo_url',
         'demo_video_url',
         'price',

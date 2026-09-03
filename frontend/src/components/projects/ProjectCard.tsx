@@ -16,7 +16,10 @@ export default function ProjectCard({ project, featured = false }: { project: Pr
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex items-center justify-between gap-4">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400">{project.category?.name ?? 'Case study'}</p>
-          {project.is_featured && <span className="text-xs text-neutral-400">Selected work</span>}
+          <div className="flex items-center gap-2">
+            {project.has_demo_credentials && <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[0.65rem] font-semibold text-emerald-700">Demo login</span>}
+            {project.is_featured && <span className="text-xs text-neutral-400">Selected work</span>}
+          </div>
         </div>
         <h3 className="mt-3 text-xl font-semibold tracking-tight text-neutral-950 dark:text-white"><Link to={`/projects/${project.slug}`} className="after:absolute after:inset-0">{project.title}</Link></h3>
         <p className="mt-3 flex-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{project.short_description}</p>

@@ -4,6 +4,7 @@ import { FaArrowUpRightFromSquare, FaGithub } from 'react-icons/fa6'
 import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import ContactButton from '@/components/common/ContactButton'
+import DemoCredentials from '@/components/projects/DemoCredentials'
 import Skeleton from '@/components/ui/Skeleton'
 import NotFound from '@/pages/NotFound'
 import { useFetch } from '@/hooks/useFetch'
@@ -110,6 +111,12 @@ export default function ProjectDetails() {
                   )}
                 </div>
               )}
+
+              <DemoCredentials
+                email={project.demo_email}
+                password={project.demo_password}
+                demoUrl={project.demo_url}
+              />
 
               {project.images.length > 0 && (
                 <div className="mt-8">

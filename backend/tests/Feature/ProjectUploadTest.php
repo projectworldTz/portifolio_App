@@ -25,6 +25,9 @@ class ProjectUploadTest extends TestCase
             'sort_order' => 0,
             'is_featured' => true,
             'is_purchasable' => false,
+            'demo_url' => 'https://demo.example.com',
+            'demo_email' => 'recruiter@example.com',
+            'demo_password' => 'demo-password',
             'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg', 1200, 750),
             'images' => [
                 ['file' => UploadedFile::fake()->image('screen.jpg', 1200, 750), 'alt_text' => 'Project screen'],
@@ -33,10 +36,26 @@ class ProjectUploadTest extends TestCase
 
         $response->assertCreated()
             ->assertJsonPath('title', 'Upload Test Project')
+            ->assertJsonPath('has_demo_credentials', true)
             ->assertJsonCount(1, 'images');
 
-        $this->assertDatabaseHas('projects', ['slug' => 'upload-test-project']);
+        $this->assertDatabaseHas('projects', [
+            'slug' => 'upload-test-project',
+            'demo_email' => 'recruiter@example.com',
+            'demo_password' => 'demo-password',
+        ]);
         $this->assertDatabaseCount('project_images', 1);
+
+        $this->get('/api/projects/upload-test-project')
+            ->assertOk()
+            ->assertJsonPath('demo_email', 'recruiter@example.com')
+            ->assertJsonPath('demo_password', 'demo-password');
+
+        $this->get('/api/projects')
+            ->assertOk()
+            ->assertJsonMissingPath('0.demo_email')
+            ->assertJsonMissingPath('0.demo_password')
+            ->assertJsonPath('0.has_demo_credentials', true);
     }
 
     public function test_project_accepts_the_documented_500_character_short_description(): void

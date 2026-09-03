@@ -25,6 +25,8 @@ class UpdateProjectRequest extends FormRequest
             'solutions' => ['nullable', 'string'],
             'thumbnail' => ['nullable', 'image', 'max:10240'],
             'demo_url' => ['nullable', 'url', 'max:255'],
+            'demo_email' => ['nullable', 'string', 'max:255'],
+            'demo_password' => ['nullable', 'string', 'max:255'],
             'repo_url' => ['nullable', 'url', 'max:255'],
             'demo_video_url' => ['nullable', 'url', 'max:255'],
             'price' => ['nullable', 'numeric', 'min:0'],

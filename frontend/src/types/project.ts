@@ -21,6 +21,9 @@ export interface Project {
   solutions: string | null
   thumbnail: string | null
   demo_url: string | null
+  has_demo_credentials: boolean
+  demo_email?: string | null
+  demo_password?: string | null
   repo_url: string | null
   demo_video_url: string | null
   price: string | null
