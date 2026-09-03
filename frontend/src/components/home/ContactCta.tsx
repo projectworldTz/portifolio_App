@@ -11,18 +11,20 @@ export default function ContactCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 to-violet-600 px-8 py-16 text-center sm:px-16"
+          className="premium-card relative overflow-hidden rounded-[2rem] bg-neutral-950 px-8 py-16 text-center sm:px-16 sm:py-20"
         >
           <div
             aria-hidden
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent_60%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.55),transparent_38%),radial-gradient(circle_at_85%_90%,rgba(168,85,247,0.35),transparent_40%)]"
           />
-          <h2 className="relative text-3xl font-bold text-white sm:text-4xl">Let&apos;s make something useful.</h2>
-          <p className="relative mx-auto mt-4 max-w-xl text-indigo-100">
+          <motion.div aria-hidden animate={{ y: [0, -12, 0], rotate: [0, 4, 0] }} transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }} className="absolute -right-12 -top-12 h-40 w-40 rounded-full border border-white/10 bg-white/5" />
+          <p className="relative text-xs font-semibold uppercase tracking-[0.2em] text-indigo-300">Have an opportunity?</p>
+          <h2 className="relative mt-4 text-3xl font-bold tracking-[-0.035em] text-white sm:text-5xl">Let&apos;s make something useful.</h2>
+          <p className="relative mx-auto mt-5 max-w-xl leading-7 text-neutral-300">
             Hiring, collaborating, or starting a new project? Tell me what you&apos;re working on.
           </p>
           <div className="relative mt-8">
-            <Button to="/contact" variant="secondary" className="!border-white !text-white hover:!bg-white/10">
+            <Button to="/contact" variant="secondary" className="!border-white/20 !bg-white !text-neutral-950 hover:!border-white hover:!bg-indigo-50">
               Start a conversation
             </Button>
           </div>

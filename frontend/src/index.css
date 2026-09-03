@@ -3,15 +3,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
 }
 
 :root {
   color-scheme: light;
+  --ink: #0a0a0b;
+  --brand: #4f46e5;
+  --brand-bright: #7c3aed;
+  --paper: #ffffff;
+  --soft: #f7f7f8;
 }
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -19,6 +25,82 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@keyframes premium-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -14px, 0) rotate(2deg); }
+}
+
+@keyframes premium-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(18px, 12px, 0) scale(1.08); }
+}
+
+@keyframes premium-shine {
+  from { transform: translateX(-140%) skewX(-18deg); }
+  to { transform: translateX(260%) skewX(-18deg); }
+}
+
+@keyframes marquee-left {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+.premium-float { animation: premium-float 7s ease-in-out infinite; }
+.premium-drift { animation: premium-drift 10s ease-in-out infinite; }
+
+.premium-shine {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.premium-shine::after {
+  position: absolute;
+  inset: -50% auto -50% 0;
+  width: 30%;
+  content: '';
+  z-index: -1;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 24%), transparent);
+  animation: premium-shine 5s ease-in-out infinite;
+}
+
+.premium-card {
+  box-shadow: 0 1px 2px rgb(15 23 42 / 3%), 0 14px 45px rgb(15 23 42 / 5%);
+}
+
+.premium-card:hover {
+  box-shadow: 0 22px 65px rgb(79 70 229 / 13%);
+}
+
+.outline-word {
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(79 70 229 / 18%);
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 24s linear infinite;
+  will-change: transform;
+}
+
+.orbit-ring {
+  animation: orbit-spin 18s linear infinite;
+  will-change: transform;
+}
+
+.section-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.08em;
 }
 
 ::selection {

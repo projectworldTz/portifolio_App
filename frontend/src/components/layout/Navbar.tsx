@@ -16,10 +16,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-sm font-medium transition-colors ${
+    `relative py-2 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-indigo-600 after:transition-transform ${
       isActive
-        ? 'text-indigo-600 dark:text-indigo-400'
-        : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white'
+        ? 'text-indigo-600 after:scale-x-100'
+        : 'text-neutral-600 after:scale-x-0 hover:text-neutral-950 hover:after:scale-x-100'
     }`
 
   const mobileLinkClass = (args: { isActive: boolean }) => `block py-2.5 ${linkClass(args)}`

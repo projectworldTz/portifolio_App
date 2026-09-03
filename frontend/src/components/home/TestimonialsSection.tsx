@@ -21,7 +21,7 @@ export default function TestimonialsSection() {
   const goTo = (next: number) => setIndex((next + total) % total)
 
   return (
-    <section className="bg-neutral-50 py-20 dark:bg-neutral-900/40">
+    <section className="border-y border-neutral-200 bg-[#fafafa] py-20 sm:py-28">
       <Container>
         <SectionHeading eyebrow="Testimonials" title="What clients say" center />
 
@@ -38,8 +38,9 @@ export default function TestimonialsSection() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="rounded-2xl border border-neutral-200 bg-white p-8 text-center shadow-sm dark:border-neutral-800 dark:bg-neutral-900"
+                    className="premium-card relative overflow-hidden rounded-3xl border border-neutral-200/80 bg-white p-8 text-center sm:p-10"
                   >
+                    <span aria-hidden className="absolute left-6 top-2 font-serif text-8xl leading-none text-indigo-100">“</span>
                     <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-indigo-50 text-indigo-500 dark:bg-indigo-500/10">
                       {current.client_photo ? (
                         <img src={current.client_photo} alt={current.client_name} className="h-full w-full object-cover" />

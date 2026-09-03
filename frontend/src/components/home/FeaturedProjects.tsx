@@ -14,8 +14,9 @@ export default function FeaturedProjects() {
   }
 
   return (
-    <section className="py-20 sm:py-28">
+    <section className="relative overflow-hidden py-20 sm:py-28">
       <Container>
+        <span aria-hidden className="section-number absolute right-4 top-8 -z-10 text-[10rem] font-black leading-none text-neutral-100 sm:right-10 sm:text-[15rem]">01</span>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading eyebrow="Selected work" title="Projects built to solve real problems" description="A focused look at the thinking, engineering, and decisions behind my work." />
           <Button to="/projects" variant="secondary">
