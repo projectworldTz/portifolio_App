@@ -38,4 +38,28 @@ class ProjectUploadTest extends TestCase
         $this->assertDatabaseHas('projects', ['slug' => 'upload-test-project']);
         $this->assertDatabaseCount('project_images', 1);
     }
+
+    public function test_project_accepts_the_documented_500_character_short_description(): void
+    {
+        $user = User::factory()->create();
+        $summary = str_repeat('a', 500);
+
+        $response = $this->actingAs($user, 'sanctum')->post('/api/projects', [
+            'title' => 'Detailed Summary Project',
+            'short_description' => $summary,
+            'description' => 'Full project description.',
+            'status' => 'draft',
+            'sort_order' => 0,
+            'is_featured' => false,
+            'is_purchasable' => false,
+        ]);
+
+        $response->assertCreated()
+            ->assertJsonPath('short_description', $summary);
+
+        $this->assertDatabaseHas('projects', [
+            'slug' => 'detailed-summary-project',
+            'short_description' => $summary,
+        ]);
+    }
 }

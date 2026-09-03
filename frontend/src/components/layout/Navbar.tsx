@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FaBars, FaXmark } from 'react-icons/fa6'
 import { useSiteData } from '@/contexts/SiteDataContext'
+import { getWhatsAppUrl } from '@/utils/whatsapp'
 
 const NAV_LINKS = [
   { to: '/projects', label: 'Work' },
@@ -12,8 +13,9 @@ const NAV_LINKS = [
 ]
 
 export default function Navbar() {
-  const { settings } = useSiteData()
+  const { settings, socialLinks } = useSiteData()
   const [isOpen, setIsOpen] = useState(false)
+  const whatsappUrl = getWhatsAppUrl(socialLinks, settings)
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `relative py-2 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-indigo-600 after:transition-transform ${
@@ -48,12 +50,14 @@ export default function Navbar() {
           >
             {isOpen ? <FaXmark size={18} /> : <FaBars size={18} />}
           </button>
-          <NavLink
-            to="/contact"
+          <a
+            href={whatsappUrl ?? '/contact'}
+            target={whatsappUrl ? '_blank' : undefined}
+            rel={whatsappUrl ? 'noreferrer' : undefined}
             className="hidden rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-600 dark:bg-white dark:text-neutral-950 dark:hover:bg-indigo-400 sm:inline-flex"
           >
             Let&apos;s talk
-          </NavLink>
+          </a>
         </div>
       </nav>
 

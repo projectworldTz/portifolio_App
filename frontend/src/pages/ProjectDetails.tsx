@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { FaArrowUpRightFromSquare, FaGithub } from 'react-icons/fa6'
 import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
-import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 import Skeleton from '@/components/ui/Skeleton'
 import NotFound from '@/pages/NotFound'
 import { useFetch } from '@/hooks/useFetch'
@@ -153,9 +153,9 @@ export default function ProjectDetails() {
               )}
               <div className="mt-4 flex flex-col gap-3">
                 {project.is_purchasable && (
-                  <Button to="/contact" variant="primary" className="w-full">
+                  <ContactButton variant="primary" className="w-full">
                     Buy Now
-                  </Button>
+                  </ContactButton>
                 )}
                 {project.demo_url && (
                   <a
@@ -177,9 +177,9 @@ export default function ProjectDetails() {
                     <FaGithub size={14} /> Source Code
                   </a>
                 )}
-                <Button to="/contact" variant="ghost" className="w-full">
+                <ContactButton variant="ghost" className="w-full">
                   Contact Me
-                </Button>
+                </ContactButton>
               </div>
             </aside>
           </div>

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { FaArrowRight, FaDownload } from 'react-icons/fa6'
 import Container from '@/components/common/Container'
 import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 import { useSiteData } from '@/contexts/SiteDataContext'
 import { getSocialIcon } from '@/utils/socialIcons'
 
@@ -35,7 +36,7 @@ export default function Hero() {
             <Button to="/projects">View selected work <FaArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" /></Button>
             {settings?.resume_url ? (
               <a href={settings.resume_url} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 shadow-sm transition-all hover:border-neutral-400 hover:shadow-md">Download resume <FaDownload size={13} /></a>
-            ) : <Button to="/contact" variant="secondary">Contact me</Button>}
+            ) : <ContactButton variant="secondary">Contact me</ContactButton>}
           </div>
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-neutral-200 pt-6">
             <p className="text-sm"><span className="font-semibold text-neutral-950">{name}</span><span className="ml-2 text-neutral-500">React · TypeScript · Laravel</span></p>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import Container from '@/components/common/Container'
-import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 
 export default function ContactCta() {
   return (
@@ -24,9 +24,9 @@ export default function ContactCta() {
             Hiring, collaborating, or starting a new project? Tell me what you&apos;re working on.
           </p>
           <div className="relative mt-8">
-            <Button to="/contact" variant="secondary" className="!border-white/20 !bg-white !text-neutral-950 hover:!border-white hover:!bg-indigo-50">
+            <ContactButton variant="secondary" className="!border-white/20 !bg-white !text-neutral-950 hover:!border-white hover:!bg-indigo-50">
               Start a conversation
-            </Button>
+            </ContactButton>
           </div>
         </motion.div>
       </Container>

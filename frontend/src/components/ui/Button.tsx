@@ -11,13 +11,19 @@ interface BaseProps {
 
 interface ButtonAsLink extends BaseProps {
   to: string
+  href?: never
+}
+
+interface ButtonAsExternalLink extends BaseProps {
+  href: string
+  to?: never
 }
 
 interface ButtonAsButton extends BaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   to?: undefined
 }
 
-type ButtonProps = ButtonAsLink | ButtonAsButton
+type ButtonProps = ButtonAsLink | ButtonAsExternalLink | ButtonAsButton
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
@@ -39,6 +45,10 @@ export default function Button({ variant = 'primary', children, className = '', 
         {children}
       </Link>
     )
+  }
+
+  if ('href' in props && props.href) {
+    return <a href={props.href} target="_blank" rel="noreferrer" className={classes}>{children}</a>
   }
 
   const buttonProps = props as ButtonHTMLAttributes<HTMLButtonElement>

@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaLocationDot, FaMapLocationDot } from 'react-icons/fa6'
+import { FaArrowUpRightFromSquare, FaEnvelope, FaLocationDot, FaMapLocationDot, FaWhatsapp } from 'react-icons/fa6'
 import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
@@ -10,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { submitContactMessage } from '@/services/contact'
 import { getSocialIcon } from '@/utils/socialIcons'
 import type { ContactMessagePayload } from '@/types'
+import { getWhatsAppUrl } from '@/utils/whatsapp'
 
 const EMPTY_FORM: ContactMessagePayload = { name: '', email: '', subject: '', message: '' }
 
@@ -19,6 +20,7 @@ export default function Contact() {
   const [form, setForm] = useState<ContactMessagePayload>(EMPTY_FORM)
   const [errors, setErrors] = useState<Partial<Record<keyof ContactMessagePayload, string>>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const whatsappUrl = getWhatsAppUrl(socialLinks, settings)
 
   const validate = (): boolean => {
     const nextErrors: Partial<Record<keyof ContactMessagePayload, string>> = {}
@@ -133,6 +135,17 @@ export default function Contact() {
               transition={{ duration: 0.4, delay: 0.1 }}
               className="space-y-6"
             >
+              {whatsappUrl && (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between rounded-2xl bg-[#075E54] p-5 text-white shadow-lg shadow-emerald-900/15 transition-all duration-300 hover:-translate-y-1 hover:bg-[#086e62] hover:shadow-xl"
+                >
+                  <span className="flex items-center gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366]"><FaWhatsapp size={23} /></span><span><span className="block text-xs text-emerald-100">Fastest response</span><span className="font-semibold">Chat on WhatsApp</span></span></span>
+                  <FaArrowUpRightFromSquare size={14} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              )}
               {settings?.email && (
                 <a
                   href={`mailto:${settings.email}`}
@@ -151,7 +164,7 @@ export default function Contact() {
 
               {socialLinks.length > 0 && (
                 <div className="flex gap-3">
-                  {socialLinks.map((link) => {
+                  {socialLinks.filter((link) => link.platform.toLowerCase() !== 'whatsapp').map((link) => {
                     const Icon = getSocialIcon(link.platform)
                     return (
                       <a

@@ -110,14 +110,14 @@ export default function SocialLinksAdmin() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <TextField
             id="platform"
-            label="Platform (e.g. github, linkedin, twitter)"
+            label="Platform (e.g. whatsapp, github, linkedin)"
             required
             value={form.platform}
             onChange={(e) => setForm({ ...form, platform: e.target.value })}
           />
           <TextField
             id="url"
-            label="URL"
+            label={form.platform.toLowerCase() === 'whatsapp' ? 'WhatsApp URL (e.g. https://wa.me/255712345678)' : 'URL'}
             type="url"
             required
             value={form.url}

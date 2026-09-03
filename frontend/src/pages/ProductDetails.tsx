@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { FaArrowUpRightFromSquare, FaBook } from 'react-icons/fa6'
 import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
-import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 import Skeleton from '@/components/ui/Skeleton'
 import NotFound from '@/pages/NotFound'
 import { useFetch } from '@/hooks/useFetch'
@@ -77,9 +77,9 @@ export default function ProductDetails() {
               <p className="mt-6 text-3xl font-bold text-neutral-900 dark:text-white">${product.price}</p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button variant="primary" className="sm:flex-1">
+                <ContactButton variant="primary" className="sm:flex-1">
                   Buy Now
-                </Button>
+                </ContactButton>
                 {product.demo_url && (
                   <a
                     href={product.demo_url}

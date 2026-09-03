@@ -7,6 +7,7 @@ import {
   FaInstagram,
   FaYoutube,
   FaDribbble,
+  FaWhatsapp,
   FaGlobe,
 } from 'react-icons/fa6'
 
@@ -19,6 +20,7 @@ const ICONS: Record<string, IconType> = {
   instagram: FaInstagram,
   youtube: FaYoutube,
   dribbble: FaDribbble,
+  whatsapp: FaWhatsapp,
 }
 
 export function getSocialIcon(platform: string): IconType {

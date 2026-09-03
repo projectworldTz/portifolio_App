@@ -4,6 +4,7 @@ import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import Skills from '@/components/home/Skills'
 import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 import { useSiteData } from '@/contexts/SiteDataContext'
 
 const PRINCIPLES = [
@@ -36,7 +37,7 @@ export default function About() {
         </Container>
       </section>
       <Skills />
-      <section className="py-20 text-center"><Container><h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white">Want to work together?</h2><p className="mx-auto mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">Tell me about the role, product, or problem you have in mind.</p><div className="mt-7"><Button to="/contact">Start a conversation</Button></div></Container></section>
+      <section className="py-20 text-center"><Container><h2 className="text-3xl font-bold tracking-tight text-neutral-950 dark:text-white">Want to work together?</h2><p className="mx-auto mt-3 max-w-xl text-neutral-600 dark:text-neutral-400">Tell me about the role, product, or problem you have in mind.</p><div className="mt-7"><ContactButton>Start a conversation</ContactButton></div></Container></section>
     </>
   )
 }

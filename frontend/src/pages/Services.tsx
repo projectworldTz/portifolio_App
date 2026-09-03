@@ -3,7 +3,7 @@ import { FaLayerGroup } from 'react-icons/fa6'
 import Seo from '@/components/common/Seo'
 import Container from '@/components/common/Container'
 import SectionHeading from '@/components/common/SectionHeading'
-import Button from '@/components/ui/Button'
+import ContactButton from '@/components/common/ContactButton'
 import Skeleton from '@/components/ui/Skeleton'
 import { useFetch } from '@/hooks/useFetch'
 import { listServices } from '@/services/serviceCatalog'
@@ -57,9 +57,9 @@ export default function Services() {
                       </ul>
                     )}
 
-                    <Button to="/contact" variant="secondary" className="mt-6 w-full">
+                    <ContactButton variant="secondary" className="mt-6 w-full">
                       Get Started
-                    </Button>
+                    </ContactButton>
                   </motion.div>
                 ))}
           </div>
