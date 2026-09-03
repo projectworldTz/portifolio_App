@@ -27,14 +27,24 @@ export default function GalleryUploader({
   onChangeNewImages,
 }: GalleryUploaderProps) {
   const [isDeletingId, setIsDeletingId] = useState<number | null>(null)
+  const [fileError, setFileError] = useState('')
 
   const handleAddFiles = (files: FileList | null) => {
     if (!files) return
-    const additions: NewImage[] = Array.from(files).map((file) => ({
+    const selected = Array.from(files)
+    const oversized = selected.filter((file) => file.size > 10 * 1024 * 1024)
+    const additions: NewImage[] = selected.filter((file) => file.size <= 10 * 1024 * 1024).map((file) => ({
       file,
       alt_text: '',
       previewUrl: URL.createObjectURL(file),
     }))
+    const totalSize = [...newImages, ...additions].reduce((total, image) => total + image.file.size, 0)
+    if (totalSize > 45 * 1024 * 1024) {
+      additions.forEach((image) => URL.revokeObjectURL(image.previewUrl))
+      setFileError('Keep gallery images under 45 MB in total so the upload can complete reliably.')
+      return
+    }
+    setFileError(oversized.length ? `${oversized.length} image${oversized.length > 1 ? 's were' : ' was'} skipped because each image must be under 10 MB.` : '')
     onChangeNewImages([...newImages, ...additions])
   }
 
@@ -43,6 +53,7 @@ export default function GalleryUploader({
   }
 
   const removeNewImage = (index: number) => {
+    URL.revokeObjectURL(newImages[index].previewUrl)
     onChangeNewImages(newImages.filter((_, i) => i !== index))
   }
 
@@ -107,6 +118,8 @@ export default function GalleryUploader({
         <FaPlus size={12} /> Add Images
         <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => handleAddFiles(e.target.files)} />
       </label>
+      <p className="mt-2 text-xs text-neutral-500">JPEG, PNG, WebP or GIF. Maximum 10 MB per image.</p>
+      {fileError && <p className="mt-1 text-xs font-medium text-red-600">{fileError}</p>}
     </div>
   )
 }

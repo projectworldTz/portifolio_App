@@ -9,15 +9,15 @@ export default function SectionHeading({ eyebrow, title, description, center = f
   return (
     <div className={`max-w-2xl ${center ? 'mx-auto text-center' : ''}`}>
       {eyebrow && (
-        <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-600">
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
+      <h2 className="mt-3 text-3xl font-bold tracking-[-0.035em] text-neutral-950 sm:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base text-neutral-600 dark:text-neutral-400">{description}</p>
+        <p className="mt-4 text-base leading-7 text-neutral-600">{description}</p>
       )}
     </div>
   )

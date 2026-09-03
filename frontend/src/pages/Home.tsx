@@ -1,5 +1,6 @@
 import Seo from '@/components/common/Seo'
 import Hero from '@/components/home/Hero'
+import RecruiterHighlights from '@/components/home/RecruiterHighlights'
 import FeaturedProjects from '@/components/home/FeaturedProjects'
 import TestimonialsSection from '@/components/home/TestimonialsSection'
 import AboutPreview from '@/components/home/AboutPreview'
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <Seo title="Home" />
       <Hero />
+      <RecruiterHighlights />
       <FeaturedProjects />
       <TestimonialsSection />
       <AboutPreview />

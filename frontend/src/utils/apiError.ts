@@ -8,6 +8,12 @@ export function getErrorMessage(err: unknown, fallback: string): string {
       if (firstError) return firstError
     }
     if (data?.message) return data.message
+    if (err.response?.status === 413) {
+      return 'The selected images are too large for one upload. Use images under 10 MB each and keep the complete upload under 55 MB.'
+    }
+    if (!err.response) {
+      return 'The server could not be reached. Check that the backend and database are running, then try again.'
+    }
   }
   return fallback
 }

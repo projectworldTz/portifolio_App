@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { FaArrowRight, FaArrowUpRightFromSquare } from 'react-icons/fa6'
 import type { Project } from '@/types'
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   return (
-    <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.35 }} className="group relative flex flex-col overflow-hidden rounded-3xl border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-2xl hover:shadow-neutral-950/10 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
+    <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-40px' }} transition={{ duration: 0.35 }} className={`group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-2xl hover:shadow-neutral-950/10 ${featured ? 'sm:col-span-2 lg:grid lg:grid-cols-[1.35fr_.65fr]' : 'flex flex-col'}`}>
       <Link to={`/projects/${project.slug}`} className="block overflow-hidden bg-neutral-100 dark:bg-neutral-800" aria-label={`Read ${project.title} case study`}>
         {project.thumbnail ? (
-          <img src={project.thumbnail} alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+          <img src={project.thumbnail} alt="" loading="lazy" decoding="async" className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${featured ? 'aspect-[16/10] lg:aspect-auto lg:min-h-[26rem]' : 'aspect-[16/10]'}`} />
         ) : (
           <div className="flex aspect-[16/10] items-end bg-gradient-to-br from-indigo-100 to-violet-100 p-6 text-sm font-medium text-indigo-900 dark:from-indigo-950 dark:to-violet-950 dark:text-indigo-200">{project.title}</div>
         )}

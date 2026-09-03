@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
+import { useState, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
 
 const BASE_INPUT =
   'w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 focus:border-indigo-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-white'
@@ -85,6 +85,18 @@ interface FileFieldProps {
 }
 
 export function FileField({ label, id, onChange, currentUrl, accept = 'image/*' }: FileFieldProps) {
+  const [fileError, setFileError] = useState('')
+
+  const handleFileChange = (file: File | null) => {
+    if (file && file.size > 10 * 1024 * 1024) {
+      setFileError('Choose an image smaller than 10 MB.')
+      onChange(null)
+      return
+    }
+    setFileError('')
+    onChange(file)
+  }
+
   return (
     <div>
       <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-neutral-700 dark:text-neutral-300">
@@ -97,9 +109,10 @@ export function FileField({ label, id, onChange, currentUrl, accept = 'image/*' 
         id={id}
         type="file"
         accept={accept}
-        onChange={(e) => onChange(e.target.files?.[0] ?? null)}
+        onChange={(e) => handleFileChange(e.target.files?.[0] ?? null)}
         className="block w-full text-sm text-neutral-600 file:mr-3 file:rounded-full file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-indigo-700 hover:file:bg-indigo-100 dark:text-neutral-300 dark:file:bg-indigo-500/10 dark:file:text-indigo-300"
       />
+      {fileError && <p className="mt-1.5 text-xs font-medium text-red-600">{fileError}</p>}
     </div>
   )
 }

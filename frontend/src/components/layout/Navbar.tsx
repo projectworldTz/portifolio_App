@@ -25,10 +25,10 @@ export default function Navbar() {
   const mobileLinkClass = (args: { isActive: boolean }) => `block py-2.5 ${linkClass(args)}`
 
   return (
-    <header className="safe-top sticky top-0 z-50 border-b border-neutral-200/80 bg-white/80 backdrop-blur-lg dark:border-neutral-800/80 dark:bg-neutral-950/80">
+    <header className="safe-top sticky top-0 z-50 border-b border-neutral-200/80 bg-white/90 shadow-[0_1px_0_rgba(0,0,0,.02)] backdrop-blur-xl">
       <nav className="safe-left safe-right mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <NavLink to="/" className="text-lg font-semibold text-neutral-900 dark:text-white">
-          {settings?.site_name ?? 'Portfolio'}<span className="text-indigo-600 dark:text-indigo-400">.</span>
+        <NavLink to="/" className="text-lg font-bold tracking-tight text-neutral-950">
+          {settings?.site_name ?? 'Portfolio'}<span className="text-indigo-600">.</span>
         </NavLink>
 
         <div className="hidden items-center gap-8 md:flex">

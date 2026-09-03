@@ -1,4 +1,49 @@
-# Deploying to Render
+# Deployment
+
+## Truehost / shared-hosting deployment
+
+The repository includes a root-level `deploy.sh` configured for this Truehost
+layout, where `public_html` points to
+`/home/projectw/repositories/portfolio-app/backend/public`. The React build is
+therefore published into `backend/public` alongside Laravel's `index.php`.
+
+One-time setup on the server:
+
+```bash
+cd /home/projectw/repositories/portfolio-app
+chmod +x deploy.sh
+```
+
+Deploy future updates with:
+
+```bash
+./deploy.sh
+```
+
+The command pulls `origin/main`, installs locked Composer and npm dependencies,
+builds the React app with `/api` as its API path, copies the build into `backend/public/`,
+runs Laravel migrations, refreshes Laravel's caches, and brings the application
+back online even when a later step fails. It does not replace `backend/.env`,
+uploaded files, or Laravel's existing `backend/public/.htaccess`.
+
+Truehost-specific modifications to `backend/public/.htaccess` and
+`backend/public/robots.txt` are allowed by the safety check. Other tracked
+server-side edits stop deployment so they cannot be overwritten accidentally.
+Untracked hosting files and directories are left untouched.
+
+Configuration can be supplied without editing the script:
+
+```bash
+DEPLOY_BRANCH=develop ./deploy.sh
+PUBLIC_DIR=dist ./deploy.sh
+PHP_BIN=/usr/local/bin/php82 ./deploy.sh
+```
+
+The server must provide Git, PHP 8.2+, Composer, and Node/npm. The first run
+will fail with a specific message if any requirement or `backend/.env` is
+missing. Never commit the production `.env` file.
+
+## Render deployment
 
 This app deploys as a **single Render Web Service**: a Docker image that builds
 the React frontend and Laravel backend together, so Laravel serves both the

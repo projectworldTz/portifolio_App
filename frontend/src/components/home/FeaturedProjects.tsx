@@ -23,10 +23,10 @@ export default function FeaturedProjects() {
           </Button>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {isLoading
             ? Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-80" />)
-            : projects?.map((project) => <ProjectCard key={project.id} project={project} />)}
+            : projects?.map((project, index) => <ProjectCard key={project.id} project={project} featured={index === 0} />)}
         </div>
       </Container>
     </section>
