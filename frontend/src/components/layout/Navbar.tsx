@@ -6,7 +6,7 @@ import { useSiteData } from '@/contexts/SiteDataContext'
 import { getWhatsAppUrl } from '@/utils/whatsapp'
 
 const NAV_LINKS = [
-  { to: '/projects', label: 'Work' },
+  { to: '/projects', label: 'My Projects' },
   { to: '/services', label: 'Services' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
